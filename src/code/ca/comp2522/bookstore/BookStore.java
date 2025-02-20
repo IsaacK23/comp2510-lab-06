@@ -15,12 +15,12 @@ import java.util.*;
  */
 public class BookStore<T extends Literature> {
 
-    private static final int                BEGINNING_COUNT = 0; // Initial count for various operations
-    private static final int                DECADE_IN_YEARS = 10; // Represents the number of years in a decade
-    private static final int                PERCENT_SHIFT   = 100; // Used to calculate percentages
-    private final        String             storeName; // The name of the bookstore
-    private final        List<T>            bookList; // List to hold literature items in the bookstore
-    private final        Map<String, T>     bookMap; // Map to associate book titles with their respective literature objects
+    private static final int            BEGINNING_COUNT = 0; // Initial count for various operations
+    private static final int            DECADE_IN_YEARS = 10; // Represents the number of years in a decade
+    private static final int            PERCENT_SHIFT   = 100; // Used to calculate percentages
+    private final        String         storeName; // The name of the bookstore
+    private final        List<T>        bookList; // List to hold literature items in the bookstore
+    private final        Map<String, T> bookMap; // Map to associate book titles with their respective literature objects
 
     /**
      * Inner class that holds information about the bookstore.
@@ -65,11 +65,15 @@ public class BookStore<T extends Literature> {
      */
     public BookStore(final String storeName) {
         this.storeName = storeName;
-        this.bookList = new ArrayList<>();
-        this.bookMap  = new HashMap<>();
+        this.bookList  = new ArrayList<>();
+        this.bookMap   = new HashMap<>();
+        populateComics();
+        populateMagazines();
+        populateNovels();
+        populateBookMap();
 
         System.out.println("BookStore: " + storeName + "\n");
-        printItems();
+
     }
 
     /**
@@ -87,11 +91,11 @@ public class BookStore<T extends Literature> {
     public void printItems() {
         for (T item : bookList) {
 
-                System.out.println("The book " + item.getTitle() +
-                                   " was written by " + item.getAuthor() +
-                                   " in " + item.getYearPublished());
-            }
+            System.out.println("The book " + item.getTitle() +
+                               " was written by " + item.getAuthor() +
+                               " in " + item.getYearPublished());
         }
+    }
 
 
     /**
@@ -100,16 +104,92 @@ public class BookStore<T extends Literature> {
      * @param args command-line arguments (not used)
      */
     public static void main(final String[] args) {
-        final BookStore<Literature> store = new BookStore<>("The Greatest Bookstore");
-        // Add various types of literature to the store
-        store.addItem(new Novel("War and Peace", "something", 2020));
-        store.addItem(new ComicBook("Spider-Man", "something", 2020));
-        store.addItem(new Magazine("National Geographic", "something", 2020));
-        store.printItems();
-        store.printAllTitles();
+        final BookStore<Literature> bookstore = new BookStore<>("The Greatest Bookstore");
+        final List<Literature> fifteenCharTitles;
+        final Literature oldest;
+
+        System.out.println("All Titles in UPPERCASE:");
+        bookstore.printAllTitles();
+        System.out.println("\nBook Titles Containing 'the':");
+        bookstore.printBookTitle("the");
+        System.out.println("\nAll Titles in Alphabetical Order:");
+        bookstore.printTitlesInAlphaOrder();
+        System.out.println("\nBooks from the 2000s:");
+        bookstore.printGroupByDecade(2000);
+        System.out.println("\nLongest Book Title:");
+        bookstore.getLongest();
+        System.out.println("\nIs there a book written in 1950?");
+        System.out.println(bookstore.isThereABookWrittenIn(1950));
+        System.out.println("\nHow many books contain 'heart'?");
+        System.out.println(bookstore.howManyBooksContain("heart"));
+        System.out.println("\nPercentage of books written between 1940 and 1950:");
+        System.out.println(bookstore.whichPercentWrittenBetween(1940, 1950) + "%");
+        System.out.println("\nOldest book:");
+        oldest = bookstore.getOldestBook();
+        System.out.println(oldest.getTitle() + " by " + oldest.getAuthor() + ", " +
+                           oldest.getYearPublished());
+        System.out.println("\nBooks with titles 15 characters long:");
+        fifteenCharTitles = bookstore.getBooksThisLength(15);
+        fifteenCharTitles.forEach(novel -> System.out.println(novel.getTitle()));
+        bookstore.removeBooksWithThe();
+        System.out.println("\nRemoving all books that contain 'the' within the title:");
+        bookstore.printSortedBooks();
 
 
     }
+
+    /*
+     * Populates the booklist with comics.
+     */
+    private void populateComics() {
+        ComicBook comic1 = new ComicBook("Watchmen", "Alan Moore", 1987);
+        ComicBook comic2 = new ComicBook("Batman: The Dark Knight Returns", "Frank Miller", 1986);
+        ComicBook comic3 = new ComicBook("Spider-Man: Blue", "Jeph Loeb", 2002);
+        ComicBook comic4 = new ComicBook("Maus", "Art Spiegelman", 1991);
+        ComicBook comic5 = new ComicBook("Sandman", "Neil Gaiman", 1989);
+
+        addItem((T) comic1);
+        addItem((T)comic2);
+        addItem((T)comic3);
+        addItem((T)comic4);
+        addItem((T)comic5);
+      }
+
+
+    /*
+       * Populates the booklist with magazines.
+       */
+      private void populateMagazines() {
+          Magazine magazine1 = new Magazine("National Geographic", "Various", 2020);
+          Magazine magazine2 = new Magazine("TIME", "Henry Luce", 1923);
+          Magazine magazine3 = new Magazine("Forbes", "B.C. Forbes", 1917);
+          Magazine magazine4 = new Magazine("Scientific American", "Michael Moyer", 1845);
+          Magazine magazine5 = new Magazine("The New Yorker", "Harold Ross", 1925);
+
+          addItem((T)magazine1);
+          addItem((T)magazine2);
+          addItem((T)magazine3);
+          addItem((T)magazine4);
+          addItem((T)magazine5);
+      }
+
+      /*
+       * Populates the booklist with novels.
+       */
+      private void populateNovels() {
+          Novel novel1 = new Novel("War and Peace", "Leo Tolstoy", 1869);
+          Novel novel2 = new Novel("Pride and Prejudice", "Jane Austen", 1813);
+          Novel novel3 = new Novel("1984", "George Orwell", 1949);
+          Novel novel4 = new Novel("The Great Gatsby", "F. Scott Fitzgerald", 1925);
+          Novel novel5 = new Novel("To Kill a Mockingbird", "Harper Lee", 1960);
+
+          addItem((T)novel1);
+          addItem((T)novel2);
+          addItem((T)novel3);
+          addItem((T)novel4);
+          addItem((T)novel5);
+      }
+
 
     /*
      * Populates the novel map with the novels within the bookstore.
@@ -139,7 +219,8 @@ public class BookStore<T extends Literature> {
      * Prints all book titles in sorted order after filtering.
      */
     private void printSortedBooks() {
-        final List<String> keyList = new ArrayList<>(bookMap.keySet());
+        final List<String> keyList;
+        keyList = new ArrayList<>(bookMap.keySet());
 
         Collections.sort(keyList);
         for (final String title : keyList) {
@@ -156,14 +237,9 @@ public class BookStore<T extends Literature> {
         }
     }
 
-    /*
-     * Prints all book titles that contain the specified word (case-insensitive).
-     *
-     * @param title the word to search for in book titles
-     */
     private void printBookTitle(final String title) {
         bookList.forEach(book -> {
-            if (book.getTitle().contains(title)) {
+            if (book.getTitle().toUpperCase().contains(title.toUpperCase())) {
                 System.out.println(book.getTitle());
             }
         });

@@ -41,4 +41,5 @@ public abstract class Literature {
      * @return the author of the literature
      */
     public abstract String getAuthor();
+
 }

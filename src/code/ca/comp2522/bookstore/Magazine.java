@@ -87,4 +87,14 @@ public class Magazine extends Literature {
     public void setYearPublished(final int yearPublished) {
         this.yearPublished = yearPublished;
     }
+
+    /**
+     * Returns a formatted string representation of the magazine.
+     *
+     * @return A string in the format "Title" by Author (Year)
+     */
+    @Override
+    public String toString() {
+        return "\"" + title + "\" by " + author + " (" + yearPublished + ")";
+    }
 }
