@@ -8,13 +8,14 @@ package ca.comp2522.bookstore;
  * @author Bullen Kosa, Dominic Cheang
  * @version 1.0
  */
-public class Novel extends Literature implements Comparable<Novel> {
+public class Novel extends Literature implements Comparable<Novel>
+{
 
     private static final int    MIN_YEAR     = 0;
     private static final int    CURRENT_YEAR = 2025;
     private final        String title;
     private final        String author;
-    private final int    yearPublished;
+    private final        int    yearPublished;
 
     /**
      * Constructs a new Novel object with the specified title, author, and year published.
@@ -23,9 +24,12 @@ public class Novel extends Literature implements Comparable<Novel> {
      * @param author        The author of the novel
      * @param yearPublished The year the novel was published
      */
-    public Novel(final String title,
-                 final String author,
-                 final int yearPublished) {
+    public Novel(
+            final String title,
+            final String author,
+            final int yearPublished
+    )
+    {
         super(yearPublished);
         this.title         = title;
         this.author        = author;
@@ -37,8 +41,10 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @param title The title to validate
      */
-    private final void validateTitle(final String title) {
-        if (title == null || title.isBlank()) {
+    private final void validateTitle(final String title)
+    {
+        if(title == null || title.isBlank())
+        {
             throw new IllegalArgumentException("Title cannot be null or empty");
         }
     }
@@ -48,8 +54,10 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @param author The author name to validate
      */
-    private final void validateAuthor(final String author) {
-        if (author == null || author.isBlank()) {
+    private final void validateAuthor(final String author)
+    {
+        if(author == null || author.isBlank())
+        {
             throw new IllegalArgumentException("Author cannot be null or empty");
         }
     }
@@ -59,8 +67,10 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @param yearPublished The year to validate
      */
-    private final void validateYearPublished(final int yearPublished) {
-        if (yearPublished > CURRENT_YEAR || yearPublished < MIN_YEAR) {
+    private final void validateYearPublished(final int yearPublished)
+    {
+        if(yearPublished > CURRENT_YEAR || yearPublished < MIN_YEAR)
+        {
             throw new IllegalArgumentException("Year published more than "
                                                + CURRENT_YEAR + " or less than " + MIN_YEAR);
         }
@@ -72,7 +82,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      * @return The novel's title
      */
     @Override
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
@@ -82,7 +93,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      * @return The author's name
      */
     @Override
-    public String getAuthor() {
+    public String getAuthor()
+    {
         return author;
     }
 
@@ -91,7 +103,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @return The publication year
      */
-    public int getYearPublished() {
+    public int getYearPublished()
+    {
         return yearPublished;
     }
 
@@ -101,7 +114,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      * @return A string in the format "Title" by Author (Year)
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "\"" + title + "\" by " + author + " (" + yearPublished + ")";
     }
 
@@ -112,7 +126,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      * @return A negative, zero, or positive integer as this title is less than, equal to, or greater than the other
      */
     @Override
-    public int compareTo(final Novel otherNovel) {
+    public int compareTo(final Novel otherNovel)
+    {
         return this.title.compareTo(otherNovel.title);
     }
 }

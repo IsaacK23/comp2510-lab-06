@@ -4,30 +4,32 @@ package ca.comp2522.bookstore;
  * Represents a comic book, which is a type of literature.
  * A comic book has a title, an author, and a year of publication.
  * It extends the {@link Literature} class.
- *
+ * <p>
  * Provides methods to retrieve and modify comic book attributes.
  *
  * @author Bullen Kosa
  * @author Isaac Kehler
  * @version 1.0
  */
-public class ComicBook extends Literature {
+public class ComicBook extends Literature
+{
 
     private String author;
     private String title;
-    private int yearPublished;
+    private int    yearPublished;
 
     /**
      * Constructs a new ComicBook with the specified title, author, and year of publication.
      *
-     * @param title        the title of the comic book
-     * @param author       the author of the comic book
+     * @param title         the title of the comic book
+     * @param author        the author of the comic book
      * @param yearPublished the year the comic book was published
      */
-    public ComicBook(final String title, final String author, final int yearPublished) {
+    public ComicBook(final String title, final String author, final int yearPublished)
+    {
         super(yearPublished);
-        this.author = author;
-        this.title = title;
+        this.author        = author;
+        this.title         = title;
         this.yearPublished = yearPublished;
     }
 
@@ -37,7 +39,8 @@ public class ComicBook extends Literature {
      * @return the title of the comic book
      */
     @Override
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
@@ -46,7 +49,8 @@ public class ComicBook extends Literature {
      *
      * @param title the new title of the comic book
      */
-    public void setTitle(final String title) {
+    public void setTitle(final String title)
+    {
         this.title = title;
     }
 
@@ -56,7 +60,8 @@ public class ComicBook extends Literature {
      * @return the author of the comic book
      */
     @Override
-    public String getAuthor() {
+    public String getAuthor()
+    {
         return author;
     }
 
@@ -65,7 +70,8 @@ public class ComicBook extends Literature {
      *
      * @param author the new author of the comic book
      */
-    public void setAuthor(final String author) {
+    public void setAuthor(final String author)
+    {
         this.author = author;
     }
 
@@ -75,7 +81,8 @@ public class ComicBook extends Literature {
      * @return the year of publication
      */
     @Override
-    public int getYearPublished() {
+    public int getYearPublished()
+    {
         return yearPublished;
     }
 
@@ -84,7 +91,8 @@ public class ComicBook extends Literature {
      *
      * @param yearPublished the new publication year
      */
-    public void setYearPublished(final int yearPublished) {
+    public void setYearPublished(final int yearPublished)
+    {
         this.yearPublished = yearPublished;
     }
 }
