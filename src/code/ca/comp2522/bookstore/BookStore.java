@@ -105,8 +105,11 @@ public class BookStore<T extends Literature> {
      */
     public static void main(final String[] args) {
         final BookStore<Literature> bookstore = new BookStore<>("The Greatest Bookstore");
+        //System.out.println(BookStore.BookStoreInfo.displayInfo());
         final List<Literature> fifteenCharTitles;
         final Literature oldest;
+
+        System.out.println(boo)
 
         System.out.println("All Titles in UPPERCASE:");
         bookstore.printAllTitles();
@@ -130,12 +133,17 @@ public class BookStore<T extends Literature> {
                            oldest.getYearPublished());
         System.out.println("\nBooks with titles 15 characters long:");
         fifteenCharTitles = bookstore.getBooksThisLength(15);
-        fifteenCharTitles.forEach(novel -> System.out.println(novel.getTitle()));
+        fifteenCharTitles.forEach(literature -> System.out.println(literature.getTitle()));
         bookstore.removeBooksWithThe();
         System.out.println("\nRemoving all books that contain 'the' within the title:");
         bookstore.printSortedBooks();
 
-
+        bookstore.bookList.sort(new Comparator<Literature>() {
+            @Override
+            public int compare(final Literature o1, final Literature o2) {
+                return Integer.compare(o1.getTitle().length(), o2.getTitle().length());
+            }
+        });
     }
 
     /*
@@ -360,7 +368,8 @@ public class BookStore<T extends Literature> {
      * @return a list of books with titles of the specified length
      */
     private List<T> getBooksThisLength(final int titleLength) {
-        final List<T> booksOfLength = new ArrayList<>();
+        final List<T> booksOfLength;
+        booksOfLength = new ArrayList<>();
 
         for (final T book : bookList) {
             if (book.getTitle().length() == titleLength) {

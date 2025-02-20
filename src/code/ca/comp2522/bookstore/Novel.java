@@ -27,6 +27,9 @@ public class Novel extends Literature implements Comparable<Novel> {
                  final String author,
                  final int yearPublished) {
         super(yearPublished);
+        validateTitle(title);
+        validateAuthor(author);
+        validateYearPublished(yearPublished);
         this.title         = title;
         this.author        = author;
         this.yearPublished = yearPublished;
@@ -91,6 +94,7 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @return The publication year
      */
+    @Override
     public int getYearPublished() {
         return yearPublished;
     }
