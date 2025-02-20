@@ -55,6 +55,7 @@ public class ComicBook extends Literature {
      *
      * @return the author of the comic book
      */
+    @Override
     public String getAuthor() {
         return author;
     }

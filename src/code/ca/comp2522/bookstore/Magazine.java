@@ -8,7 +8,7 @@ package ca.comp2522.bookstore;
  * Provides methods to get and set magazine attributes.
  *
  * @author Bullen Kosa
- * @author Isaav Kehler
+ * @author Isaac Kehler
  * @version 1.0
  */
 public class Magazine extends Literature {
@@ -55,6 +55,7 @@ public class Magazine extends Literature {
      *
      * @return the author of the magazine
      */
+    @Override
     public String getAuthor() {
         return author;
     }

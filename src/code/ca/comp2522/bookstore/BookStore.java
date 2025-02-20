@@ -86,9 +86,13 @@ public class BookStore<T extends Literature> {
      */
     public void printItems() {
         for (T item : bookList) {
-            System.out.println(item.getTitle());
+
+                System.out.println("The book " + item.getTitle() +
+                                   " was written by " + item.getAuthor() +
+                                   " in " + item.getYearPublished());
+            }
         }
-    }
+
 
     /**
      * The main method to demonstrate the functionality of the BookStore class.
@@ -103,6 +107,8 @@ public class BookStore<T extends Literature> {
         store.addItem(new Magazine("National Geographic", "something", 2020));
         store.printItems();
         store.printAllTitles();
+
+
     }
 
     /*

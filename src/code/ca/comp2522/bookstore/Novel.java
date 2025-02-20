@@ -81,7 +81,8 @@ public class Novel extends Literature implements Comparable<Novel> {
      *
      * @return The author's name
      */
-    public String getAuthorName() {
+    @Override
+    public String getAuthor() {
         return author;
     }
 

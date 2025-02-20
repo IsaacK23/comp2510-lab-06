@@ -34,4 +34,11 @@ public abstract class Literature {
      * @return the title of the literature
      */
     public abstract String getTitle();
+
+    /**
+     * Retrieves the author of the literature.
+     *
+     * @return the author of the literature
+     */
+    public abstract String getAuthor();
 }
