@@ -8,7 +8,8 @@ package ca.comp2522.bookstore;
  * @author Isaac Kehler
  * @version 1.0
  */
-public abstract class Literature {
+public abstract class Literature
+{
 
     private int yearPublished;
 
@@ -17,7 +18,8 @@ public abstract class Literature {
      *
      * @param yearPublished the year the literature was published
      */
-    public Literature(final int yearPublished) {
+    public Literature(final int yearPublished)
+    {
         this.yearPublished = yearPublished;
     }
 
