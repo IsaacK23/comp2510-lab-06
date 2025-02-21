@@ -30,6 +30,11 @@ public class ComicBook extends Literature
     public ComicBook(final String title, final String author, final int yearPublished)
     {
         super(yearPublished);
+
+        validateTitle(title);
+        validateAuthor(author);
+        validateYearPublished(yearPublished);
+
         this.author        = author;
         this.title         = title;
         this.yearPublished = yearPublished;

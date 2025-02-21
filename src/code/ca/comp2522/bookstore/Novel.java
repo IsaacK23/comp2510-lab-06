@@ -30,9 +30,11 @@ public class Novel extends Literature implements Comparable<Novel>
                  final int yearPublished)
     {
         super(yearPublished);
+
         validateTitle(title);
         validateAuthor(author);
         validateYearPublished(yearPublished);
+
         this.title         = title;
         this.author        = author;
         this.yearPublished = yearPublished;
