@@ -13,6 +13,8 @@ package ca.comp2522.bookstore;
  */
 public class Magazine extends Literature
 {
+    private static final int MIN_YEAR     = 0;
+    private static final int CURRENT_YEAR = 2025;
 
     private String title;
     private String author;
@@ -25,7 +27,9 @@ public class Magazine extends Literature
      * @param author        the author of the magazine
      * @param yearPublished the year the magazine was published
      */
-    public Magazine(final String title, final String author, final int yearPublished)
+    public Magazine(final String title,
+                    final String author,
+                    final int yearPublished)
     {
         super(yearPublished);
         this.title         = title;
@@ -102,7 +106,8 @@ public class Magazine extends Literature
      * @return A string in the format "Title" by Author (Year)
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "\"" + title + "\" by " + author + " (" + yearPublished + ")";
     }
 }
