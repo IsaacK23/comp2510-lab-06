@@ -72,6 +72,8 @@ public class BookStore<T extends Literature> {
         populateNovels();
         populateBookMap();
 
+
+
         System.out.println("BookStore: " + storeName + "\n");
 
     }
@@ -86,14 +88,19 @@ public class BookStore<T extends Literature> {
     }
 
     /**
-     * Prints the titles of all books in the bookstore.
+     * Prints the book based on its instance.
      */
     public void printItems() {
-        for (T item : bookList) {
-
-            System.out.println("The book " + item.getTitle() +
-                               " was written by " + item.getAuthor() +
-                               " in " + item.getYearPublished());
+        for (final T item : bookList) {
+            if(item instanceof ComicBook) {
+                System.out.println("Comic: " + item.getTitle());
+            }
+            else if(item instanceof Magazine) {
+                System.out.println("Magazine: " + item.getTitle());
+            }
+            else if(item instanceof Novel) {
+                System.out.println("Novel: " + item.getTitle());
+            }
         }
     }
 
@@ -105,11 +112,15 @@ public class BookStore<T extends Literature> {
      */
     public static void main(final String[] args) {
         final BookStore<Literature> bookstore = new BookStore<>("The Greatest Bookstore");
-        //System.out.println(BookStore.BookStoreInfo.displayInfo());
+
+
+
+        BookStoreInfo.displayInfo(bookstore.storeName, bookstore.bookList.size());
+
         final List<Literature> fifteenCharTitles;
         final Literature oldest;
 
-        System.out.println(boo)
+        bookstore.printItems();
 
         System.out.println("All Titles in UPPERCASE:");
         bookstore.printAllTitles();
